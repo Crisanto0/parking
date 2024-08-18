@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>registrar empleado</title>
+    <title>Registrar Empleado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/style_menu.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/styleregistro.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/47484d554e.js" crossorigin="anonymous"></script>
 
     <style>
-        
         header {
             background-color: #4ea556;
-            padding: 19px 10px; 
+            padding: 19px 10px;
             text-align: left;
             color: white;
             position: fixed;
@@ -53,14 +51,11 @@
 
         .menu {
             width: 250px;
-            
             position: fixed;
-            
             left: 0;
             background-color: white;
             border-right: 1px solid #ccc;
             overflow-y: auto;
-            
             padding-top: 80px; /* Espacio para la cabecera del menú */
             transition: transform 0.3s ease;
         }
@@ -77,8 +72,7 @@
             display: flex;
             align-items: center;
             padding: 10px;
-            
-            color:black;
+            color: black;
         }
 
         .rol h4 {
@@ -89,17 +83,11 @@
         }
 
         .sub__menu {
-    padding-left: 20px;
-    margin: 0;
-    
-    width: 200px; /* o un ancho relativo como 100% */
-    
-}
-
-     
+            padding-left: 20px;
+            margin: 0;
+            width: 200px; /* o un ancho relativo como 100% */
+        }
     </style>
-   
-    
 </head>
 <body>
     <header>
@@ -107,7 +95,7 @@
             <i class="fa-solid fa-bars"></i>
         </div>
         <p class="logo-title">Parking Web</p>
-        <p class="menu-title">Menú</p>
+        
     </header>
 
     <nav class="nav">
@@ -209,103 +197,129 @@
             </li>
         </ul>
     </nav>
+
     <div class="content" id="body">
+        <div class="container">
+            <h2 class="text-center my-4">Registro de Empleado Nuevo</h2>
+            <form action="{{ route('registrarempleado') }}" method="POST" class="row g-3">
+                @csrf
+                <!-- Información Personal -->
+                <h3>Información Personal</h3>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="nombre" class="form-label">Nombre Completo:</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="apellido" class="form-label">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="correo" class="form-label">Correo Electrónico:</label>
+                        <input type="email" id="correo" name="correo" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="telefono" class="form-label">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="direccion" class="form-label">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="tipo_identificacion" class="form-label">Tipo de Identificación:</label>
+                        <select id="tipo_identificacion" name="tipo_identificacion" class="form-select" required>
+                            <option value="">Seleccione...</option>
+                            <option value="TI">TI</option>
+                            <option value="Pasaporte">Pasaporte</option>
+                            <option value="Cedula">Cédula</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
+                        <input type="text" id="numero_identificacion" name="numero_identificacion" class="form-control" required>
+                    </div>
+                </div>
 
-     
-    <div class="container">
-        <h2>Registro de Empleado Nuevo</h2>
-        <form action="{{ route('registrarempleado') }}" method="POST">
-            @csrf
-            <h3>Información Personal</h3>
-            
-            <div class="form-group">
-                <label for="nombre">Nombre Completo:</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" required>
-            </div>
-            <div class="form-group">
-                <label for="correo">Correo Electrónico:</label>
-                <input type="correo" id="correo" name="correo" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="telefono">Teléfono:</label>
-                <input type="tel" id="telefono" name="telefono" required>
-            </div>
-            <div class="form-group">
-                <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" required>
-            </div>
-            <div class="form-group">
-                <label for="tipo_identificacion">Tipo de Identificación:</label>
-                <select id="tipo_identificacion" name="tipo_identificacion" required>
-                    <option value="">Seleccione...</option>
-                    <option value="TI">TI</option>
-                    <option value="Pasaporte">Pasaporte</option>
-                    <option value="Cedula">Cédula</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="numero_identificacion">Número de Identificación:</label>
-                <input type="text" id="numero_identificacion" name="numero_identificacion" required>
-            </div>
+                <!-- Información Laboral -->
+                <h3>Información Laboral</h3>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="salario" class="form-label">Salario:</label>
+                        <input type="number" id="salario" name="salario" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="tipo_contrato" class="form-label">Tipo de Contrato:</label>
+                        <select id="tipo_contrato" name="tipo_contrato" class="form-select" required>
+                            <option value="">Seleccione...</option>
+                            <option value="Indefinido">Indefinido</option>
+                            <option value="Temporal">Temporal</option>
+                            <option value="Por obra">Por obra</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="rol_id" class="form-label">Rol:</label>
+                        <select id="rol_id" name="rol" class="form-select" required>
+                            <option value="">Seleccione...</option>
+                            <option value="1">Administrador</option>
+                            <option value="2">Empleado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="horario" class="form-label">Horario:</label>
+                        <input type="text" id="horario" name="horario" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="fecha_contrato" class="form-label">Fecha de Contrato:</label>
+                        <input type="date" id="fecha_contrato" name="fecha_contrato" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="fecha_terminacion" class="form-label">Fecha de Terminación:</label>
+                        <input type="date" id="fecha_terminacion" name="fecha_terminacion" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="usuario" class="form-label">Usuario:</label>
+                        <input type="text" id="usuario" name="usuario" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="contrasena" class="form-label">Contraseña:</label>
+                        <input type="password" id="contrasena" name="contrasena" class="form-control" required>
+                    </div>
+                </div>
 
-            <!-- Información Laboral -->
-            <h3>Información Laboral</h3>
-            <div class="form-group">
-                <label for="salario">Salario:</label>
-                <input type="number" id="salario" name="salario" required>
-            </div>
-            <div class="form-group">
-                <label for="tipo_contrato">Tipo de Contrato:</label>
-                <select id="tipo_contrato" name="tipo_contrato" required>
-                    <option value="">Seleccione...</option>
-                    <option value="Indefinido">Indefinido</option>
-                    <option value="Temporal">Temporal</option>
-                    <option value="Por obra">Por obra</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="rol_id">Rol:</label>
-                <select id="rol_id" name="rol" required>
-                    <option value="">Seleccione...</option>
-                    <option value="1">Administrador</option>
-                    <option value="2">Empleado</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="horario">Horario:</label>
-                <input type="text" id="horario" name="horario" required>
-            </div>
-
-            <label for="fecha_contrato">fecha_contrato</label>
-            <input type="date" id="fecha_contrato" name="fecha_contato" required>
-
-            <label for="fecha_terminacion">fecha_terminacion</label>
-            <input type="date" id="fecha_terminacion" name="fecha_terminacion" required>
-            <div class="form-group">
-                <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" name="usuario" required>
-            </div>
-            <div class="form-group">
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required>
-            </div>
-
-            <!-- Botones -->
-            <div class="form-buttons">
-                <input type="submit" value="enviar" >
-                
-            </div>
-        </form>
+                <!-- Botones -->
+                <div class="col-12 text-center">
+                    <input type="submit" value="Enviar" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
     </div>
-
-    </div> 
-
-    
-    
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
