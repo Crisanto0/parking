@@ -126,7 +126,10 @@
                         <a href="/registrarempleado" class="nav__link nav__link--inside">Registrar Empleados</a>
                     </li>
                     <li class="inside">
-                        <a href="" class="nav__link nav__link--inside">Activar y Bloquear</a>
+                        <a href="" class="nav__link nav__link--inside">Activar  </a>
+                    </li>
+                    <li class="inside">
+                        <a href="" class="nav__link nav__link--inside"> Bloquear </a>
                     </li>
                 </ul>
             </li>
