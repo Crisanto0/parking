@@ -7,6 +7,7 @@
     <title>registrar empleado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/style_menu.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/styleregistro.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/47484d554e.js" crossorigin="anonymous"></script>
 
     <style>
@@ -305,6 +306,6 @@
     </div> 
 
     
-    <script src="{{ asset('js/main.js') }}"></script>
+    
 </body>
 </html>
