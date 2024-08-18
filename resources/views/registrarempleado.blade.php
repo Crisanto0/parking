@@ -129,12 +129,12 @@
                 <div class="options__button options__button--click">
                     <i class="fa-solid fa-users-gear" title="Gestión de Empleados"></i>
                     <a href="" class="nav__link">Gestión de Empleados</a>
-                    <i class="fa-solid fa-chevron-right"></i>
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
 
                 <ul class="sub__menu">
                     <li class="inside">
-                        <a href="" class="nav__link nav__link--inside">Registrar Empleados</a>
+                        <a href="/registrarempleado" class="nav__link nav__link--inside">Registrar Empleados</a>
                     </li>
                     <li class="inside">
                         <a href="" class="nav__link nav__link--inside">Activar y Bloquear</a>
@@ -146,7 +146,7 @@
                 <div class="options__button options__button--click">
                     <i class="fa-solid fa-users-rectangle" title="Gestión de Clientes"></i>
                     <a href="" class="nav__link">Gestión de Clientes</a>
-                    <i class="fa-solid fa-chevron-right" id="flecha"></i>
+                    <i class="fa-solid fa-chevron-down" id="flecha"></i>
                 </div>
 
                 <ul class="sub__menu">
@@ -163,7 +163,7 @@
                 <div class="options__button options__button--click">
                     <i class="fa-solid fa-square-parking" title="Gestión de Zonas"></i>
                     <a href="" class="nav__link">Gestión de Zonas</a>
-                    <i class="fa-solid fa-chevron-right"></i>
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
 
                 <ul class="sub__menu">
@@ -207,9 +207,104 @@
                 </div>
             </li>
         </ul>
-    </nav> 
+    </nav>
     <div class="content" id="body">
+
+     
+    <div class="container">
+        <h2>Registro de Empleado Nuevo</h2>
+        <form action="{{ route('registrarempleado') }}" method="POST">
+            @csrf
+            <h3>Información Personal</h3>
+            
+            <div class="form-group">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo Electrónico:</label>
+                <input type="correo" id="correo" name="correo" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" required>
+            </div>
+            <div class="form-group">
+                <label for="tipo_identificacion">Tipo de Identificación:</label>
+                <select id="tipo_identificacion" name="tipo_identificacion" required>
+                    <option value="">Seleccione...</option>
+                    <option value="TI">TI</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                    <option value="Cedula">Cédula</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="numero_identificacion">Número de Identificación:</label>
+                <input type="text" id="numero_identificacion" name="numero_identificacion" required>
+            </div>
+
+            <!-- Información Laboral -->
+            <h3>Información Laboral</h3>
+            <div class="form-group">
+                <label for="salario">Salario:</label>
+                <input type="number" id="salario" name="salario" required>
+            </div>
+            <div class="form-group">
+                <label for="tipo_contrato">Tipo de Contrato:</label>
+                <select id="tipo_contrato" name="tipo_contrato" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Indefinido">Indefinido</option>
+                    <option value="Temporal">Temporal</option>
+                    <option value="Por obra">Por obra</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="rol_id">Rol:</label>
+                <select id="rol_id" name="rol" required>
+                    <option value="">Seleccione...</option>
+                    <option value="1">Administrador</option>
+                    <option value="2">Empleado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="horario">Horario:</label>
+                <input type="text" id="horario" name="horario" required>
+            </div>
+
+            <label for="fecha_contrato">fecha_contrato</label>
+            <input type="date" id="fecha_contrato" name="fecha_contato" required>
+
+            <label for="fecha_terminacion">fecha_terminacion</label>
+            <input type="date" id="fecha_terminacion" name="fecha_terminacion" required>
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required>
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+            </div>
+
+            <!-- Botones -->
+            <div class="form-buttons">
+                <input type="submit" value="enviar" >
+                
+            </div>
+        </form>
+    </div>
+
     </div> 
+
+    
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

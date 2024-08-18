@@ -147,7 +147,7 @@
                 <div class="options__button options__button--click">
                     <i class="fa-solid fa-users-gear" title="Gestión de Empleados"></i>
                     <a href="" class="nav__link">Gestión de Empleados</a>
-                    <i class="fa-solid fa-chevron-right"></i>
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
 
                 <ul class="sub__menu">
@@ -164,7 +164,7 @@
                 <div class="options__button options__button--click">
                     <i class="fa-solid fa-users-rectangle" title="Gestión de Clientes"></i>
                     <a href="" class="nav__link">Gestión de Clientes</a>
-                    <i class="fa-solid fa-chevron-right" id="flecha"></i>
+                    <i class="fa-solid fa-chevron-down" id="flecha"></i>
                 </div>
 
                 <ul class="sub__menu">
@@ -181,7 +181,7 @@
                 <div class="options__button options__button--click">
                     <i class="fa-solid fa-square-parking" title="Gestión de Zonas"></i>
                     <a href="" class="nav__link">Gestión de Zonas</a>
-                    <i class="fa-solid fa-chevron-right"></i>
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
 
                 <ul class="sub__menu">

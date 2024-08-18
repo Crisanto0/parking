@@ -16,10 +16,23 @@ class Usuario extends Model
     protected $table = 'usuarios';
 
     protected $fillable = [
+        'nombre',
+        'apellido',
+        'correo',
+        'telefono',
+        'direccion',
+        'tipo_identificacion',
+        'numero_identificacion',
+        'salario',
+        'tipo_contrato',
+        'rol_id',
+        'horario',
         'usuario',
         'contrasena',
+        'fecha_contrato',
+        'fecha_terminacion',
     ];
-
+    
     //...
 
 
