@@ -15,7 +15,7 @@ class AnuncioController extends Controller
         // Validar los datos
         $request->validate([
             'descripcion' => 'required|string|max:255',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         // Crear un nuevo anuncio
