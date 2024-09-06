@@ -78,7 +78,7 @@
     <div class="col-md-6">
         <div class="form-group mb-3">
             <label for="rol_id" class="form-label">Rol:</label>
-            <select id="rol_id" name="rol" class="form-select" required>
+            <select id="rol_id" name="rol_id" class="form-select" required>
                 <option value="">Seleccione...</option>
                 <option value="1">Administrador</option>
                 <option value="2">Empleado</option>

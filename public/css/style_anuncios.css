@@ -1,0 +1,17 @@
+.textarea {
+    width: 100%;
+    min-height: 50px;
+    resize: none;
+    overflow: hidden;
+}
+
+.formulario img {
+    max-width: 50px;
+    max-height: 50px;
+    height: auto;
+    
+}
+
+.prueba{
+    color: red;
+}

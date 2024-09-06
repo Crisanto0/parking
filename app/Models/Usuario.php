@@ -1,19 +1,17 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-// app/Models/Usuario.php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
+    use Notifiable, HasApiTokens;
+
     protected $table = 'usuarios';
+    protected $primaryKey = 'usuario_id';
 
     protected $fillable = [
         'nombre',
@@ -32,9 +30,6 @@ class Usuario extends Model
         'fecha_contrato',
         'fecha_terminacion',
     ];
-    
-    //...
-
 
     protected $hidden = [
         'contrasena',
@@ -44,9 +39,21 @@ class Usuario extends Model
         'email_verified_at' => 'datetime',
     ];
 
+    // Relación con la tabla roles
+    public function rol()
+    {
+        return $this->belongsTo(Role::class, 'rol_id');
+    }
+
+    // Mutador para encriptar la contraseña
     public function setContrasenaAttribute($value)
     {
         $this->attributes['contrasena'] = bcrypt($value);
     }
 
+    // Cambiar el nombre de la columna 'password' a 'contrasena' para la autenticación
+    public function getAuthPassword()
+    {
+        return $this->contrasena;
+    }
 }

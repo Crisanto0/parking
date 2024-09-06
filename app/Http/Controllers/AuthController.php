@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -16,20 +17,27 @@ class AuthController extends Controller
             'contrasena' => 'required|string',
         ]);
 
-        // Obtener los datos del usuario
-        $usuario = $request->input('usuario');
-        $contrasena = $request->input('contrasena');
+        // Obtener el usuario desde la base de datos
+        $user = DB::table('usuarios')->where('usuario', $request->input('usuario'))->first();
 
-        // Consultar el usuario en la base de datos
-        $user = DB::table('usuarios')->where('usuario', $usuario)->first();
-
-        if ($user && Hash::check($contrasena, $user->contrasena)) {
-            // Si las credenciales son correctas
-            return redirect()->intended('/inicio');
+        // Verificar si el usuario existe y si está bloqueado
+        if ($user && $user->status === 'bloqueado') {
+            return back()->with('error', 'Tu cuenta está bloqueada. Contacta al administrador.');
         }
-         else {
-            // Si las credenciales son incorrectas
-            return back()->with('error', 'Datos erróneos');
+
+        // Preparar las credenciales para la autenticación
+        $credentials = [
+            'usuario' => $request->input('usuario'),
+            'password' => $request->input('contrasena'),
+        ];
+
+        // Intentar iniciar sesión con las credenciales
+        if (Auth::attempt($credentials)) {
+            // Autenticación exitosa, redirige según el rol
+            return redirect()->intended('/inicio');
+        } else {
+            // Autenticación fallida
+            return back()->with('error', 'Credenciales incorrectas');
         }
     }
 }
