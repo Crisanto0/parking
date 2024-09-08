@@ -4,6 +4,23 @@
 
 @section('content')
 <h2 class="text-center my-4">Editar Clientes</h2>
+@if (session('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
+<!-- Mostrar mensajes de error -->
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form action="{{ route('propietarios.update', $propietario->propietario_id) }}" method="POST" class="row g-3">
     @csrf
     @method('PUT')

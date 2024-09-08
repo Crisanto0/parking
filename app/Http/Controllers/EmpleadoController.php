@@ -7,14 +7,35 @@ use App\Models\Usuario;  // Asegúrate de que el modelo esté en el namespace co
 
 class EmpleadoController extends Controller
 {
+
     public function store(Request $request)
     {
+        // Validar los campos
+        $request->validate([
+            'telefono' => 'required|digits:10|numeric',
+            'contrasena' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[a-z]/',       // Al menos una letra minúscula
+                'regex:/[A-Z]/',       // Al menos una letra mayúscula
+                'regex:/[0-9]/',       // Al menos un número
+                'regex:/[@$!%*?&]/'    // Al menos un carácter especial
+            ],
+        ], [
+            'telefono.digits' => 'El teléfono debe tener exactamente 10 dígitos.',
+            'telefono.numeric' => 'El teléfono solo puede contener números.',
+            'contrasena.regex' => 'La contraseña debe tener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial.',
+            'contrasena.min' => 'La contraseña debe tener al menos 8 caracteres.',
+        ]);
+    
+        // Crear el empleado si la validación es exitosa
         Usuario::create($request->all());
-
-      
-
-        return redirect()->route('inicio')->with('success', 'Cliente y vehiculos registrados con éxito');
+    
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('registrar_empleado')->with('success', 'Empleado registrado con éxito');
     }
+    
 
     public function index(Request $request)
     {

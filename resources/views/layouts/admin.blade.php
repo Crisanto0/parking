@@ -110,7 +110,7 @@
             <i class="fa-solid fa-bars"></i>
         </div>
         <p class="logo-title">Parking Web</p>
-        <p class="menu-title">Menú</p>
+        
     </header>
 
     <nav class="nav">
@@ -141,7 +141,7 @@
                         <a href="/registrarempleado" class="nav__link nav__link--inside">Registrar Empleados</a>
                     </li>
                     <li class="inside">
-                        <a href="{{ route('empleados.index') }}" class="nav__link nav__link--inside">estado del empleado  </a>
+                        <a href="{{ route('empleados.index') }}" class="nav__link nav__link--inside">Estado del empleado  </a>
                     </li>
                     
                 </ul>
@@ -159,7 +159,7 @@
                         <a href="/registrarclientes" class="nav__link nav__link--inside">Registrar Clientes</a>
                     </li>
                     <li class="inside">
-                        <a href="" class="nav__link nav__link--inside">Buscar Clientes</a>
+                        <a href="{{ route('propietarios.index') }}" class="nav__link nav__link--inside">Buscar Clientes</a>
                     </li>
                 </ul>
             </li>
@@ -184,12 +184,7 @@
                 </ul>
             </li>
 
-            <li class="options">
-                <div class="options__button">
-                    <i class="fa-solid fa-file-lines" title="Gestión de Informes"></i>
-                    <a href="" class="nav__link">Gestión de Informes</a>
-                </div>
-            </li>
+           
 
             <li class="options">
                 <div class="options__button">

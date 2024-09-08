@@ -4,6 +4,26 @@
 
 @section('content')
 <h2 class="text-center my-4">Registro de Empleado Nuevo</h2>
+
+<!-- Mostrar mensajes de éxito -->
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+<!-- Mostrar mensajes de error -->
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form action="{{ route('registrarempleado') }}" method="POST" class="row g-3">
     @csrf
     <!-- Información Personal -->
@@ -121,6 +141,4 @@
         <input type="submit" value="Enviar" class="btn btn-primary">
     </div>
 </form>
-</div>
-</div>
 @endsection

@@ -4,6 +4,7 @@
 
 @section('content')
 <h2 class="text-center my-4">Editar Empleado</h2>
+
 <form action="{{ route('empleados.update', $empleado->usuario_id) }}" method="POST" class="row g-3">
     @csrf
     @method('PUT')

@@ -1,30 +1,27 @@
 <?php
 namespace App\Http\Controllers;
-
+use App\Http\Requests\StoreRequest;
 use Illuminate\Http\Request;
 use App\Models\Propietario;
 use App\Models\Vehiculo;
 
 class PropietarioController extends Controller
 {
-    public function store(Request $request)
-    {
-        
-        $propietario= Propietario::create($request->all());
+    public function store(StoreRequest $request)
+{
+    $propietario = Propietario::create($request->all());
 
-            Vehiculo::create([
-                'placa'=>$request->placa,
-                'marca'=>$request->marca,
-                'modelo'=>$request-> modelo,
-                'propietario_id'=>$propietario->propietario_id,
-                'tipo_vehiculo'=>$request->tipo_vehiculo,
-                'color'=>$request ->color
-            ]);
+    Vehiculo::create([
+        'placa' => $request->placa,
+        'marca' => $request->marca,
+        'modelo' => $request->modelo,
+        'propietario_id' => $propietario->propietario_id,
+        'tipo_vehiculo' => $request->tipo_vehiculo,
+        'color' => $request->color,
+    ]);
 
-    
-        return redirect()->route('inicio')->with('success', 'Cliente y vehículo registrados con éxito');
-    }
-
+    return redirect()->route('registrarclientes')->with('success', 'Cliente y vehículo registrados con éxito');
+}
     public function index(Request $request)
     {
         $search = $request->input('search'); // Obtener el valor de búsqueda
@@ -49,7 +46,7 @@ public function edit($propietario_id)
     return view('propietarios.edit', compact('propietario'));
 }
 
-public function update(Request $request, $propietario_id)
+public function update(StoreRequest $request, $propietario_id)
 {
   
     // Validamos los datos del formulario
@@ -75,7 +72,7 @@ public function update(Request $request, $propietario_id)
     $vehiculo = Vehiculo::where('propietario_id', $propietario_id)->firstOrFail();
     $vehiculo->update($request->only(['placa', 'marca', 'modelo', 'tipo_vehiculo', 'color']));
 
-    return redirect()->route('propietarios.index')->with('success', 'Propietario y vehículo actualizados con éxito');
+    return redirect()->route('propietarios.edit')->with('success', 'Propietario y vehículo actualizados con éxito');
 }
 
 
