@@ -56,4 +56,11 @@ class Usuario extends Authenticatable
     {
         return $this->contrasena;
     }
+
+    public function factura()
+    {
+        return $this->belongsTo(Factura::class, 'usuarios_usuario_id', 'usuario_id');
+    }
+    
+    
 }

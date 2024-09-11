@@ -173,10 +173,14 @@
 
                 <ul class="sub__menu">
                     <li class="inside">
-                        <a href="" class="nav__link nav__link--inside">Asignar Zonas</a>
+                        <a href="{{ route('parking.index') }}" class="nav__link nav__link--inside">Asignar Zonas</a>
                     </li>
+
                     <li class="inside">
                         <a href="" class="nav__link nav__link--inside">Consultar Zonas</a>
+                    </li>
+                    <li class="inside">
+                        <a href="{{route('parking.create')}}" class="nav__link nav__link--inside">Crear Zonas</a>
                     </li>
                     <li class="inside">
                         <a href="" class="nav__link nav__link--inside">Consultar Vehículos</a>

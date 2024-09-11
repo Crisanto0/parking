@@ -72,7 +72,8 @@ public function update(StoreRequest $request, $propietario_id)
     $vehiculo = Vehiculo::where('propietario_id', $propietario_id)->firstOrFail();
     $vehiculo->update($request->only(['placa', 'marca', 'modelo', 'tipo_vehiculo', 'color']));
 
-    return redirect()->route('propietarios.edit')->with('success', 'Propietario y vehículo actualizados con éxito');
+    return redirect()->route('propietarios.edit', ['propietario_id' => $propietario_id])->with('success', 'Propietario y vehículo actualizados con éxito');
+
 }
 
 

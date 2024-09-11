@@ -81,3 +81,16 @@ Route::get('/propietarios/{propietario_id}/edit', [PropietarioController::class,
 Route::put('/propietarios/{propietario_id}', [PropietarioController::class, 'update'])->name('propietarios.update');
 
 Route::delete('propietarios/{propietario_id}', [PropietarioController::class, 'destroy'])->name('propietarios.destroy');
+
+use App\Http\Controllers\ParkingController;
+
+Route::get('/parking', [ParkingController::class, 'index'])->name('parking.index');
+Route::post('/parking/assign', [ParkingController::class, 'assign'])->name('parking.assign');
+Route::patch('/parking/unassign/{garaje_id}', [ParkingController::class, 'unassign'])->name('parking.unassign');
+Route::get('parking/invoice/{no_factura}', [ParkingController::class, 'showInvoice'])->name('parking.invoice');
+Route::get('/parking/create', [ParkingController::class, 'create'])->name('parking.create');
+Route::post('/parking/store', [ParkingController::class, 'store'])->name('parking.store');
+Route::get('/parking/search', [ParkingController::class, 'search'])->name('parking.search');
+Route::get('/parking/{garaje_id}', [ParkingController::class, 'show'])->name('parking.show');
+Route::get('/parking/{no_factura}/pdf', [ParkingController::class, 'downloadInvoicePdf'])->name('parking.pdf');
+Route::get('/parking/print/{no_factura}', [ParkingController::class, 'printInvoice'])->name('parking.print');

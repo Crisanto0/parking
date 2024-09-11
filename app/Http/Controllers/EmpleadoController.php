@@ -13,6 +13,19 @@ class EmpleadoController extends Controller
         // Validar los campos
         $request->validate([
             'telefono' => 'required|digits:10|numeric',
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'direccion' => 'nullable|string|max:255',
+            'tipo_identificacion' => 'required|string|max:255',
+            'numero_identificacion' => 'required|string|max:255',
+            'salario' => 'required|numeric|min:0',
+            'tipo_contrato' => 'required|in:Indefinido,Temporal,Por obra',
+            'rol_id' => 'required|in:1,2',
+            'horario' => 'required|string|max:255',
+            'fecha_contrato' => 'required|date',
+            'fecha_terminacion' => 'required|date|after_or_equal:fecha_contrato',
+            'usuario' => 'required|numeric',
             'contrasena' => [
                 'required',
                 'string',
@@ -25,8 +38,11 @@ class EmpleadoController extends Controller
         ], [
             'telefono.digits' => 'El teléfono debe tener exactamente 10 dígitos.',
             'telefono.numeric' => 'El teléfono solo puede contener números.',
+            'telefono.digits' => 'El teléfono debe tener exactamente 10 dígitos.',
+            'email.email' => 'El campo :attribute debe ser un correo electrónico válido.',
             'contrasena.regex' => 'La contraseña debe tener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial.',
             'contrasena.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'usuario.numeric' => 'El campo usuario solo puede conterener el numero de identificación.',
         ]);
     
         // Crear el empleado si la validación es exitosa

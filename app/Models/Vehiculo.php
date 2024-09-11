@@ -9,14 +9,21 @@ class Vehiculo extends Model
     use HasFactory;
 
     protected $table = 'vehiculos';
-    protected $primaryKey = 'propietario_id';
+    protected $primaryKey = 'propietario_id'; 
     protected $fillable = [
-        'propietario_id', 'marca', 'modelo', 'placa', 'tipo_vehiculo', 'color'
+        'placa', 'marca', 'modelo', 'no_chasis', 'tipo_vehiculo', 'color', 'propietario_id'
     ];
 
     public function propietario()
     {
-        return $this->belongsTo(Propietario::class);
+        return $this->belongsTo(Propietario::class, 'propietario_id');
     }
-    public $timestamps= false;
+
+    public function parking()
+    {
+        return $this->belongsTo(Parking::class);
+    }
+
+    
+    public $timestamps = false;
 }
