@@ -8,9 +8,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\PropietarioController;
 
-Route::get('/', function () {
-    return view('login');
-})->name('login');
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 
 Route::post('/', [AuthController::class, 'login']);
 
@@ -63,7 +61,16 @@ Route::delete('/empleados/{usuario_id}', [EmpleadoController::class, 'destroy'])
 
 Route::get('/buscar_empleados', [EmpleadoController::class, 'index'])->name('buscar_empleados.index');
 Route::get('empleados/{usuario_id}/changeStatus', [EmpleadoController::class, 'changeStatus'])->name('empleados.changeStatus');
+Route::get('/empleados/{usuario_id}/perfil', [EmpleadoController::class, 'showProfile'])->name('empleados.profile');
+Route::get('/empleados/{usuario_id}/perfil/editar', [EmpleadoController::class, 'editProfile'])->name('empleados.editProfile');
+Route::post('/empleados/{usuario_id}/perfil/actualizar', [EmpleadoController::class, 'updateProfile'])->name('empleados.updateProfile');
+Route::post('/empleados/{usuario_id}/perfil/cambiar-contrasena', [EmpleadoController::class, 'changePassword'])->name('empleados.changePassword');
+Route::get('empleados/{usuario_id}/cambiar-contraseña', [EmpleadoController::class, 'showChangePasswordForm'])->name('empleados.changePasswordForm');
 
+Route::get('password/verify', [EmpleadoController::class, 'showPasswordResetForm'])->name('password.verify');
+Route::post('password/verify', [EmpleadoController::class, 'verifySecurityWord']);
+Route::get('password/change/{usuario_id}', [EmpleadoController::class, 'showChangePasswordForm1'])->name('password.change');
+Route::post('password/change/{usuario_id}', [EmpleadoController::class, 'changePassword1']);
 
 
 

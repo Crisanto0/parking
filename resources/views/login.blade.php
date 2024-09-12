@@ -58,8 +58,17 @@ input {
         <h1 class="tituloinicial">Login parking web</h1>
 
         @if (session('error'))
-            <p>{{ session('error') }}</p>
-        @endif
+        <p style="color: red;">{{ session('error') }}</p>
+    @endif
+    
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li style="color: red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+    
 
         <form method="post" action="{{ route('login') }}">
             @csrf
@@ -68,7 +77,7 @@ input {
             <input type="submit" class="login" value="Login">
         </form>
         <div class="link-container">
-            <a class="olvido" href="#">Olvidé mi contraseña</a>
+            <a class="olvido" href="{{route('password.verify')}}">Olvidé mi contraseña</a>
         </div>
     </div>
 </div>

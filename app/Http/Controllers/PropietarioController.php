@@ -66,13 +66,13 @@ public function update(StoreRequest $request, $propietario_id)
     $propietario = Propietario::findOrFail($propietario_id);
     
     // Actualizamos los datos del propietario
-    $propietario->update($request->only(['nombre', 'apellido', 'tipo_identificacion', 'numero_identificacion']));
+    $propietario->update($request->all());
     
     // Buscamos y actualizamos los datos del vehículo
     $vehiculo = Vehiculo::where('propietario_id', $propietario_id)->firstOrFail();
-    $vehiculo->update($request->only(['placa', 'marca', 'modelo', 'tipo_vehiculo', 'color']));
+    $vehiculo->update($request->all());
 
-    return redirect()->route('propietarios.edit', ['propietario_id' => $propietario_id])->with('success', 'Propietario y vehículo actualizados con éxito');
+    return redirect()->route('propietarios.index', ['propietario_id' => $propietario_id])->with('success', 'Propietario y vehículo actualizados con éxito');
 
 }
 

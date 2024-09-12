@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+
+    public function showLoginForm()
+    {
+        // Destruir la sesión actual
+         // Elimina todos los datos de la sesión
+        session()->regenerateToken(); // Regenera el token CSRF para mayor seguridad
+
+        return view('login'); // Mostrar la vista de login
+    }
+    
     public function login(Request $request)
     {
         // Validar los datos de entrada
@@ -28,16 +38,17 @@ class AuthController extends Controller
         // Preparar las credenciales para la autenticación
         $credentials = [
             'usuario' => $request->input('usuario'),
-            'password' => $request->input('contrasena'),
+            'contrasena' => $request->input('contrasena'),
         ];
-
-        // Intentar iniciar sesión con las credenciales
-        if (Auth::attempt($credentials)) {
-            // Autenticación exitosa, redirige según el rol
+        
+        $user = DB::table('usuarios')->where('usuario', $request->input('usuario'))->first();
+        
+        // Verificar si la contraseña es correcta
+        if ($user && Hash::check($request->input('contrasena'), $user->contrasena)) {
+            Auth::loginUsingId($user->usuario_id); // Autenticar manualmente al usuario
             return redirect()->intended('/inicio');
         } else {
-            // Autenticación fallida
             return back()->with('error', 'Credenciales incorrectas');
         }
-    }
+    }        
 }

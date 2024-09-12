@@ -129,6 +129,14 @@
                 </div>
             </li>
 
+            <li class="options">
+                <div class="options__button">
+                    <i class="fa-solid fa-user-tie" title="profile"></i>
+                    <a href="{{ route('empleados.profile', ['usuario_id' => auth()->user()->usuario_id]) }}" class="nav__link">Perfil</a>
+
+                </div>
+            </li>
+
             <li class="options options--click">
                 <div class="options__button options__button--click">
                     <i class="fa-solid fa-users-gear" title="Gestión de Empleados"></i>

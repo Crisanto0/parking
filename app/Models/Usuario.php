@@ -29,6 +29,7 @@ class Usuario extends Authenticatable
         'contrasena',
         'fecha_contrato',
         'fecha_terminacion',
+        'palabra_seguridad',
     ];
 
     protected $hidden = [
@@ -50,6 +51,12 @@ class Usuario extends Authenticatable
     {
         $this->attributes['contrasena'] = bcrypt($value);
     }
+
+    public function setPalabraSeguridadAttribute($value)
+    {
+        $this->attributes['palabra_seguridad'] = bcrypt($value);
+    }
+
 
     // Cambiar el nombre de la columna 'password' a 'contrasena' para la autenticación
     public function getAuthPassword()

@@ -56,6 +56,7 @@ class ParkingController extends Controller
             'placa' => $vehiculo->placa,
             'fecha_hora_entrada' => Carbon::now(),
             'factura_no_factura' => null, // No hay factura aún
+            'tarifa_por_minuto' => $request->tarifa_por_minuto,
         ]);
     
         // Cambiar el estado del garaje a 'Ocupado'

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Usuario;  // Asegúrate de que el modelo esté en el namespace correcto
 
@@ -49,7 +49,7 @@ class EmpleadoController extends Controller
         Usuario::create($request->all());
     
         // Redirigir con un mensaje de éxito
-        return redirect()->route('registrar_empleado')->with('success', 'Empleado registrado con éxito');
+        return redirect()->route('registrarempleado')->with('success', 'Empleado registrado con éxito');
     }
     
 
@@ -102,6 +102,119 @@ class EmpleadoController extends Controller
     
         // Asegúrate de pasar el parámetro correctamente
         return redirect()->route('empleados.show', ['usuario_id' => $usuario_id])->with('success', 'Estado del empleado actualizado correctamente');
+    }
+    
+    public function showProfile($usuario_id)
+    {
+        $empleado = Usuario::findOrFail($usuario_id);
+        return view('empleados.profile', compact('empleado'));
+    }
+    public function editProfile($usuario_id)
+    {
+        $empleado = Usuario::findOrFail($usuario_id);
+        return view('empleados.editProfile', compact('empleado'));
+    }
+    public function showChangePasswordForm($usuario_id)
+    {
+        $empleado = Usuario::find($usuario_id);
+        return view('empleados.changePassword', compact('empleado'));
+    }
+    public function updateProfile(Request $request, $usuario_id)
+    {
+        // Validar los datos del perfil
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'correo' => 'required|string|email|max:255|unique:usuarios,correo,' . $usuario_id . ',usuario_id',
+            'telefono' => 'required|digits:10|numeric',
+            'direccion' => 'nullable|string|max:255',
+            'palabra_seguridad'=>'required|string|max:255'
+        ]);
+
+        // Actualizar el perfil
+        $empleado = Usuario::findOrFail($usuario_id);
+        $empleado->update($request->all());
+
+        return redirect()->route('empleados.profile', ['usuario_id' => $usuario_id])
+                        ->with('success', 'Perfil actualizado correctamente.');
+    }   
+
+    
+
+public function changePassword(Request $request, $usuario_id)
+{
+    // Validar los datos de la contraseña
+    $request->validate([
+        'current_contrasena' => 'required',
+        'contrasena' => ['required', 'confirmed', 'min:8',
+            'regex:/[a-z]/',       // Al menos una letra minúscula
+            'regex:/[A-Z]/',       // Al menos una letra mayúscula
+            'regex:/[0-9]/',       // Al menos un número
+            'regex:/[@$!%*?&]/'    // Al menos un carácter especial
+        ],
+    ], [
+        'new_contrasena.regex' => 'La nueva contraseña debe contener al menos una letra minúscula, una mayúscula, un número y un carácter especial.',
+    ]);
+
+    // Verificar si la contraseña actual es correcta
+    $empleado = Usuario::findOrFail($usuario_id);
+    if (!Hash::check($request->input('current_contrasena'), $empleado-> contrasena)) {
+        return back()->withErrors(['current_contrasena' => 'La contraseña actual no es correcta.']);
+    }
+
+    // Cambiar la contraseña
+    $empleado->update($request->all());
+
+    return redirect()->route('empleados.profile', ['usuario_id' => $usuario_id])
+                     ->with('success', 'Contraseña actualizada correctamente.');
+}
+
+public function showPasswordResetForm()
+{
+    return view('password.verify');
+}
+
+public function verifySecurityWord(Request $request)
+{
+    // Validar los campos
+    $request->validate([
+        'usuario' => 'required|string',
+        'palabra_seguridad' => 'required|string',
+    ]);
+
+    // Buscar al usuario por el nombre de usuario
+    $empleado = Usuario::where('usuario', $request->input('usuario'))->first();
+
+    if (!$empleado || !Hash::check($request->input('palabra_seguridad'), $empleado->palabra_seguridad)) {
+        return back()->withErrors(['palabra_seguridad' => 'La palabra de seguridad o el usuario no son correctos.']);
+    }
+
+    // Redirigir al formulario de cambio de contraseña
+    return redirect()->route('password.change', ['usuario_id' => $empleado->usuario_id]);
+}
+
+public function showChangePasswordForm1($usuario_id)
+    {
+        $empleado = Usuario::find($usuario_id);
+        return view('password.changePassword', compact('empleado'));
+    }
+    public function changePassword1(Request $request, $usuario_id)
+    {
+        // Validar la nueva contraseña
+        $request->validate([
+            'contrasena' => ['required', 'confirmed', 'min:8',
+                'regex:/[a-z]/',       // Al menos una letra minúscula
+                'regex:/[A-Z]/',       // Al menos una letra mayúscula
+                'regex:/[0-9]/',       // Al menos un número
+                'regex:/[@$!%*?&]/'    // Al menos un carácter especial
+            ],
+        ]);
+    
+        // Cambiar la contraseña
+        $empleado = Usuario::findOrFail($usuario_id);
+        $empleado->update($request->all());
+        return redirect()->route('login', )
+                         ->with('success', 'Contraseña actualizada correctamente.');
     }
     
 }
