@@ -10,6 +10,10 @@ class Factura extends Model
 
     protected $fillable = ['fecha_factura', 'codigo_resolucion', 'valor', 'tiempo_prestado', 'valor_fracion', 'usuarios_usuario_id'];
 
+    protected $casts = [
+        'fecha_factura' => 'datetime',
+    ];
+
     public function parkings()
     {
         return $this->hasMany(Parking::class, 'factura_no_factura');
@@ -18,4 +22,6 @@ class Factura extends Model
     {
         return $this->belongsTo(Usuario::class, 'usuarios_usuario_id', 'usuario_id');
     }
+  
+
 }

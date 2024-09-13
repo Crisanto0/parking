@@ -147,7 +147,7 @@
             <li class="options options--click">
                 <div class="options__button options__button--click">
                     <i class="fa-solid fa-users-rectangle" title="Gestión de Clientes"></i>
-                    <a href="" class="nav__link">Gestión de Clientes</a>
+                    <a href="#" class="nav__link">Gestión de Clientes</a>
                     <i class="fa-solid fa-chevron-down" id="flecha"></i>
                 </div>
 
@@ -164,21 +164,14 @@
             <li class="options options--click">
                 <div class="options__button options__button--click">
                     <i class="fa-solid fa-square-parking" title="Gestión de Zonas"></i>
-                    <a href="" class="nav__link">Gestión de Zonas</a>
+                    <a href="#" class="nav__link">Gestión de Zonas</a>
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
 
                 <ul class="sub__menu">
                     <li class="inside">
                         <a href="{{ route('parking.index') }}" class="nav__link nav__link--inside">Asignar Zonas</a>
-                    </li>
-                    <li class="inside">
-                        <a href="" class="nav__link nav__link--inside">Consultar Zonas</a>
-                    </li>
-                   
-                    <li class="inside">
-                        <a href="" class="nav__link nav__link--inside">Consultar Vehículos</a>
-                    </li>
+                    
                 </ul>
             </li>
 
@@ -186,7 +179,7 @@
             <li class="options">
                 <div class="options__button">
                     <i class="fa-solid fa-receipt" title="Facturación"></i>
-                    <a href="" class="nav__link">Facturación</a>
+                    <a href="{{ route('facturas.index') }}" class="nav__link">Facturas</a>
                 </div>
             </li>
 

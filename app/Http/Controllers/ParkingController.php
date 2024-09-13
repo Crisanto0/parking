@@ -169,14 +169,17 @@ public function show($garaje_id)
 
 public function downloadInvoicePdf($no_factura)
 {
-    $factura = Factura::with('usuario')->where('no_factura', $no_factura)->firstOrFail();
+    $factura = Factura::with(['usuario', 'parkings.vehiculo', 'parkings.garaje'])
+                      ->where('no_factura', $no_factura)
+                      ->firstOrFail();
 
-    // Generar el PDF usando la vista 'parking.invoice'
+    // Generar el PDF usando la vista 'parking.invoice_pdf'
     $pdf = PDF::loadView('parking.invoice_pdf', compact('factura'));
 
     // Descargar el archivo PDF
-    return $pdf->download('factura_' . $factura->no_factura . '.pdf');
+    return $pdf->stream('factura_' . $factura->no_factura . '.pdf');
 }
+
 
 public function printInvoice($no_factura)
 {
@@ -186,6 +189,147 @@ public function printInvoice($no_factura)
 
 
     return view('parking.invoice_print', compact('factura'));
+}
+
+public function facturasIndex(Request $request)
+{
+    // Obtener los parámetros de búsqueda (día, mes, año)
+    $dia = $request->input('dia');
+    $mes = $request->input('mes');
+    $anio = $request->input('anio');
+
+    // Consulta básica de facturas
+    $facturas = Factura::query();
+
+    // Filtrar por día
+    if ($dia) {
+        $facturas->whereDay('fecha_factura', $dia);
+    }
+
+    // Filtrar por mes
+    if ($mes) {
+        $facturas->whereMonth('fecha_factura', $mes);
+    }
+
+    // Filtrar por año
+    if ($anio) {
+        $facturas->whereYear('fecha_factura', $anio);
+    }
+
+    // Obtener las facturas filtradas
+    $facturas = $facturas->paginate(10);
+    $facturas->appends([
+        'dia' => $dia,
+        'mes' => $mes,
+        'anio' => $anio,
+    ]);
+
+    return view('parking.facturas_index', compact('facturas', 'dia', 'mes', 'anio'));
+}
+
+public function downloadReportPdf(Request $request)
+{
+    // Obtener los parámetros de búsqueda (día, mes, año)
+    $dia = $request->input('dia');
+    $mes = $request->input('mes');
+    $anio = $request->input('anio');
+
+    // Consulta básica de facturas
+    $facturas = Factura::query();
+
+    // Filtrar por día
+    if ($dia) {
+        $facturas->whereDay('fecha_factura', $dia);
+    }
+
+    // Filtrar por mes
+    if ($mes) {
+        $facturas->whereMonth('fecha_factura', $mes);
+    }
+
+    // Filtrar por año
+    if ($anio) {
+        $facturas->whereYear('fecha_factura', $anio);
+    }
+
+    // Obtener las facturas filtradas
+    $facturas = $facturas->get();
+
+    // Generar el PDF usando la vista creada 'facturas_pdf'
+    $pdf = PDF::loadView('parking.facturas_pdf', compact('facturas'));
+
+    // Descargar el PDF
+    return $pdf->download('reporte_facturas_' . now()->format('d-m-Y') . '.pdf');
+}
+
+public function manageZones(Request $request)
+{
+    $search = $request->input('search');
+
+    $garajes = Garaje::with('estado')
+        ->when($search, function($query, $search) {
+            return $query->where('descripcion', 'like', "%{$search}%");
+        })
+        ->paginate(10);
+
+    return view('parking.manage_zones', compact('garajes', 'search'));
+}
+
+
+public function block($id_garaje)
+{
+    $garaje = Garaje::findOrFail($id_garaje);
+    $garaje->estados_estado_id = 3; // Estado de bloqueado
+    $garaje->save();
+
+    return redirect()->route('parking.manage_zones')->with('success', 'Zona bloqueada correctamente.');
+}
+
+
+public function activate($id_garaje)
+{
+    $garaje = Garaje::findOrFail($id_garaje);
+    $garaje->estados_estado_id = 1; // Estado de disponible
+    $garaje->save();
+
+    return redirect()->route('parking.manage_zones')->with('success', 'Zona activada correctamente.');
+}
+
+
+public function delete($id_garaje)
+{
+    $garaje = Garaje::findOrFail($id_garaje);
+    $garaje->delete();
+
+    return redirect()->route('parking.manage_zones')->with('success', 'Zona eliminada correctamente.');
+}
+
+public function edit($id_garaje)
+{
+    $garaje = Garaje::findOrFail($id_garaje);
+    $estados = Estado::all(); // Obtener todos los estados disponibles
+
+    return view('parking.edit', compact('garaje', 'estados'));
+}
+
+public function update(Request $request, $id_garaje)
+{
+    // Validar los datos
+    $request->validate([
+        'descripcion' => 'required|string|max:255',
+        'estados_estado_id' => 'required|integer|exists:estados,estado_id', // Asegúrate de que el ID del estado exista en la tabla de estados
+    ]);
+
+    // Buscar el garaje por ID
+    $garaje = Garaje::findOrFail($id_garaje);
+
+    // Actualizar los datos del garaje
+    $garaje->update([
+        'descripcion' => $request->descripcion,
+        'estados_estado_id' => $request->estados_estado_id,
+    ]);
+
+    return redirect()->route('parking.manage_zones')->with('success', 'Zona actualizada correctamente.');
 }
 
 

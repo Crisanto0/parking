@@ -26,7 +26,10 @@
                 </h3>
                 <p><strong>Estado:</strong> {{ $garaje->estado->descripcion }}</p>
 
-                @if (strtolower($garaje->estado->descripcion) == 'disponible')
+                @if (strtolower($garaje->estado->descripcion) == 'bloqueada')
+                    <!-- Mostrar mensaje si la zona está bloqueada -->
+                    <p style="color: red; font-weight: bold;">Zona Bloqueada</p>
+                @elseif (strtolower($garaje->estado->descripcion) == 'disponible')
                     <!-- Formulario para asignar un vehículo -->
                     <form action="{{ route('parking.assign') }}" method="POST">
                         @csrf
@@ -36,22 +39,21 @@
                         <select name="placa" style="width: 100%; padding: 5px; margin-top: 10px;" required>
                             <option value="">Seleccionar Vehículo</option>
                             @foreach ($vehiculos as $vehiculo)
-                            <option value="{{ $vehiculo->placa }}">
-                                {{ $vehiculo->placa }} - 
-                                {{ $vehiculo->propietario ? $vehiculo->propietario->nombre . ' ' . $vehiculo->propietario->apellido : 'Desconocido' }}
-                            </option>
+                                <option value="{{ $vehiculo->placa }}">
+                                    {{ $vehiculo->placa }} - 
+                                    {{ $vehiculo->propietario ? $vehiculo->propietario->nombre . ' ' . $vehiculo->propietario->apellido : 'Desconocido' }}
+                                </option>
                             @endforeach
                         </select>
                         <!-- Campo para ingresar el costo por minuto -->
                         <label for="tarifa_por_minuto">Costo por minuto:</label>
                         <input type="number" name="tarifa_por_minuto" style="width: 100%; padding: 5px; margin-top: 10px;" min="0" required>
 
-
                         <button type="submit" style="margin-top: 10px; width: 100%; background-color: green; color: white; padding: 10px; border: none; border-radius: 5px;">
                             Asignar Zona
                         </button>
                     </form>
-                @else
+                @elseif (strtolower($garaje->estado->descripcion) == 'ocupada')
                     <!-- Mostrar botón de desasignar si la zona está ocupada -->
                     <form action="{{ route('parking.unassign', $garaje->id_garaje) }}" method="POST">
                         @csrf
@@ -65,6 +67,7 @@
         @endforeach
     </div>
 @endsection
+
 
 
 

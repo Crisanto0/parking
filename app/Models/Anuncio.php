@@ -9,6 +9,7 @@ class Anuncio extends Model
     
         use HasFactory;
     protected $table = 'anuncios';
+    protected $primaryKey = 'id_anuncio';
     
         protected $fillable = [
             'descripcion',

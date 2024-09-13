@@ -21,7 +21,7 @@ route::get('/anuncios',function(){
     return view('anuncios');
 })->name('anuncios');
 
-
+Route::resource('anuncios', AnuncioController::class);
 
 // Ruta para mostrar el formulario
 Route::get('/registrarempleado', function(){
@@ -101,3 +101,16 @@ Route::get('/parking/search', [ParkingController::class, 'search'])->name('parki
 Route::get('/parking/{garaje_id}', [ParkingController::class, 'show'])->name('parking.show');
 Route::get('/parking/{no_factura}/pdf', [ParkingController::class, 'downloadInvoicePdf'])->name('parking.pdf');
 Route::get('/parking/print/{no_factura}', [ParkingController::class, 'printInvoice'])->name('parking.print');
+Route::get('/facturas', [ParkingController::class, 'facturasIndex'])->name('facturas.index');
+Route::get('/facturas/reporte', [ParkingController::class, 'downloadReportPdf'])->name('facturas.reporte');
+Route::get('/manage-zones', [ParkingController::class, 'manageZones'])->name('parking.manage_zones');
+Route::post('/parking/block/{id_garaje}', [ParkingController::class, 'block'])->name('parking.block');
+Route::post('/parking/activate/{id_garaje}', [ParkingController::class, 'activate'])->name('parking.activate');
+Route::delete('/parking/delete/{id_garaje}', [ParkingController::class, 'delete'])->name('parking.delete');
+// Ruta para mostrar el formulario de edición
+Route::get('parking/{id_garaje}/edit', [ParkingController::class, 'edit'])->name('parking.edit');
+
+// Ruta para actualizar la zona de parqueo
+Route::put('parking/{id_garaje}', [ParkingController::class, 'update'])->name('parking.update');
+
+
