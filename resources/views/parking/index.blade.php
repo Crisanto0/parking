@@ -61,6 +61,9 @@
                         <button type="submit" style="margin-top: 10px; width: 100%; background-color: red; color: white; padding: 10px; border: none; border-radius: 5px;">
                             Desasignar Zona
                         </button>
+                        <a href="{{ route('generar.ticket', $garaje->id_garaje) }}" style="margin-top: 10px; width: 100%;" class="btn btn-primary">Descargar Ticket de Entrada</a>
+
+
                     </form>
                 @endif
             </div>

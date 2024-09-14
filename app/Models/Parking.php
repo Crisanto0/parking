@@ -19,6 +19,10 @@ class Parking extends Model
         'tarifa_por_minuto' 
     ];
 
+    protected $casts = [
+        'fecha_hora_entrada' => 'datetime',
+    ];
+
     // Relación con la tabla 'factura', que ahora puede ser NULL inicialmente
     public function factura()
     {

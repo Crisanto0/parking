@@ -34,41 +34,46 @@ class ParkingController extends Controller
     }
     
     public function assign(Request $request)
-{
-    // Validar la solicitud
-    $request->validate([
-        'garaje_id' => 'required|exists:garaje,id_garaje',
-        'placa' => 'required|exists:vehiculos,placa',
-        'tarifa_por_minuto' => 'required|numeric|min:0', // Validar el costo por minuto // Validar que la placa exista
-    ]);
+    {
+        $request->validate([
+            'garaje_id' => 'required|exists:garaje,id_garaje',
+            'placa' => 'required|exists:vehiculos,placa',
+            'tarifa_por_minuto' => 'required|numeric|min:0',
+        ]);
     
-    // Buscar el garaje por ID
-    $garaje = Garaje::findOrFail($request->garaje_id);
+        $garaje = Garaje::findOrFail($request->garaje_id);
+        $vehiculo = Vehiculo::where('placa', $request->placa)->firstOrFail();
     
-    // Buscar el vehículo por placa
-    $vehiculo = Vehiculo::where('placa', $request->placa)->firstOrFail();
+        // Verificar si hay una transacción de parqueo abierta para este garaje
+        $transaccionAnterior = Parking::where('Garaje_id_garaje', $garaje->id_garaje)
+                                      ->whereNull('fecha_hora_salida')
+                                      ->first();
     
-    // Verificar si el garaje está disponible
-    if ($garaje->estado->descripcion == 'Disponible') {
-        // Crear la transacción en la tabla parking
+        if ($transaccionAnterior) {
+            // Cerrar la transacción anterior si existe
+            $transaccionAnterior->fecha_hora_salida = Carbon::now();
+            $transaccionAnterior->save();
+        }
+    
+        // Crear la nueva transacción de parqueo
         Parking::create([
             'Garaje_id_garaje' => $garaje->id_garaje,
             'placa' => $vehiculo->placa,
             'fecha_hora_entrada' => Carbon::now(),
-            'factura_no_factura' => null, // No hay factura aún
+            'factura_no_factura' => null,
             'tarifa_por_minuto' => $request->tarifa_por_minuto,
         ]);
     
-        // Cambiar el estado del garaje a 'Ocupado'
-        $garaje->estados_estado_id = 2; // Asegúrate de que el ID 2 es el correcto para 'Ocupado'
-        $garaje->save(); // Guardar el cambio en la base de datos
+        $garaje->estados_estado_id = 2; // Cambiar a 'Ocupado'
+        $garaje->save();
     
         return redirect()->route('parking.index')->with('success', 'Zona asignada correctamente');
     }
     
+    
     // Si la zona no está disponible, redirigir con un error
-    return redirect()->route('parking.index')->with('error', 'Esta zona ya está ocupada');
-}
+   
+
 
 
 
@@ -332,6 +337,28 @@ public function update(Request $request, $id_garaje)
     return redirect()->route('parking.manage_zones')->with('success', 'Zona actualizada correctamente.');
 }
 
+
+
+public function generarTicket($id_garaje)
+{
+    // Obtener la información del garaje y las relaciones asociadas
+    $garaje = Garaje::with(['estado', 'parking.vehiculo.propietario'])->find($id_garaje);
+    
+    // Obtener el último parking asociado al garaje, si existe
+    $ultimoParking = $garaje->parking->last(); // Obtener el último registro de parking
+    
+    // Preparar los datos para la vista del ticket
+    $data = [
+        'garaje' => $garaje,
+        'ultimoParking' => $ultimoParking
+    ];
+
+    // Generar el PDF con la vista del ticket
+    $pdf = PDF::loadView('parking.ticket', $data);
+
+    // Descargar el PDF como ticket
+    return $pdf->download('ticket_garaje_' . $garaje->id_garaje . '.pdf');
+}
 
 }
 

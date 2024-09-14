@@ -112,5 +112,7 @@ Route::get('parking/{id_garaje}/edit', [ParkingController::class, 'edit'])->name
 
 // Ruta para actualizar la zona de parqueo
 Route::put('parking/{id_garaje}', [ParkingController::class, 'update'])->name('parking.update');
+Route::get('/generar-ticket/{id_garaje}', [ParkingController::class, 'generarTicket'])->name('generar.ticket');
+
 
 
