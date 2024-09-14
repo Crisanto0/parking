@@ -100,7 +100,7 @@ Route::post('/parking/store', [ParkingController::class, 'store'])->name('parkin
 Route::get('/parking/search', [ParkingController::class, 'search'])->name('parking.search');
 Route::get('/parking/{garaje_id}', [ParkingController::class, 'show'])->name('parking.show');
 Route::get('/parking/{no_factura}/pdf', [ParkingController::class, 'downloadInvoicePdf'])->name('parking.pdf');
-Route::get('/parking/print/{no_factura}', [ParkingController::class, 'printInvoice'])->name('parking.print');
+Route::get('/parking/pdf/{no_factura}', [ParkingController::class, 'printInvoice'])->name('parking.pdf');
 Route::get('/facturas', [ParkingController::class, 'facturasIndex'])->name('facturas.index');
 Route::get('/facturas/reporte', [ParkingController::class, 'downloadReportPdf'])->name('facturas.reporte');
 Route::get('/manage-zones', [ParkingController::class, 'manageZones'])->name('parking.manage_zones');

@@ -182,18 +182,22 @@ public function downloadInvoicePdf($no_factura)
     $pdf = PDF::loadView('parking.invoice_pdf', compact('factura'));
 
     // Descargar el archivo PDF
-    return $pdf->stream('factura_' . $factura->no_factura . '.pdf');
+    return $pdf->download('factura_' . $factura->no_factura . '.pdf');
 }
 
 
 public function printInvoice($no_factura)
 {
     // Cargar la factura junto con el usuario relacionado
-    $factura = Factura::with('usuario')->where('no_factura', $no_factura)->firstOrFail();
-  
+    $factura = Factura::with(['usuario', 'parkings.vehiculo', 'parkings.garaje'])
+    ->where('no_factura', $no_factura)
+    ->firstOrFail();
 
+// Generar el PDF usando la vista 'parking.invoice_pdf'
+$pdf = PDF::loadView('parking.invoice_pdf', compact('factura'));
 
-    return view('parking.invoice_print', compact('factura'));
+// Descargar el archivo PDF
+return $pdf->stream('factura_' . $factura->no_factura . '.pdf');
 }
 
 public function facturasIndex(Request $request)

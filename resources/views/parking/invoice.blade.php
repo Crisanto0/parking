@@ -29,7 +29,7 @@
             Descargar PDF
         </a>
 
-        <a href="{{ route('parking.print', $factura->no_factura) }}" style="display: inline-block; margin-top: 10px; background-color: green; color: white; padding: 10px; border-radius: 5px; text-decoration: none;">
+        <a href="{{ route('parking.pdf', $factura->no_factura) }}" style="display: inline-block; margin-top: 10px; background-color: green; color: white; padding: 10px; border-radius: 5px; text-decoration: none;" target="_blank">
             Imprimir Factura
         </a>
 
