@@ -19,7 +19,7 @@
         <div class="form-group mb-3">
             <label for="current_contrasena">Contraseña Actual:</label>
             <div class="input-group">
-                <input type="password" id="current_contrasena" name="current_contrasena" class="form-control" required>
+                <input type="password" id="current_contrasena" name="current_contrasena" class="form-control" >
                 <button type="button" class="btn btn-outline-secondary" id="toggleCurrentPassword">
                     <i class="bi bi-eye"></i>
                 </button>
@@ -30,7 +30,7 @@
         <div class="form-group mb-3">
             <label for="new_contrasena">Nueva Contraseña:</label>
             <div class="input-group">
-                <input type="password" id="new_contrasena" name="contrasena" class="form-control" required>
+                <input type="password" id="new_contrasena" name="contrasena" class="form-control" >
                 <button type="button" class="btn btn-outline-secondary" id="toggleNewPassword">
                     <i class="bi bi-eye"></i>
                 </button>
@@ -41,7 +41,7 @@
         <div class="form-group mb-3">
             <label for="contrasena_confirmation">Confirmar Nueva Contraseña:</label>
             <div class="input-group">
-                <input type="password" id="confirm_contrasena" name="contrasena_confirmation" class="form-control" required>
+                <input type="password" id="confirm_contrasena" name="contrasena_confirmation" class="form-control">
                 <button type="button" class="btn btn-outline-secondary" id="toggleConfirmPassword">
                     <i class="bi bi-eye"></i>
                 </button>

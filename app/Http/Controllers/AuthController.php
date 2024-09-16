@@ -13,7 +13,7 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         // Destruir la sesión actual
-         // Elimina todos los datos de la sesión
+       
         session()->regenerateToken(); // Regenera el token CSRF para mayor seguridad
 
         return view('login'); // Mostrar la vista de login
@@ -50,5 +50,7 @@ class AuthController extends Controller
         } else {
             return back()->with('error', 'Credenciales incorrectas');
         }
-    }        
+    }  
+    
+    
 }

@@ -14,6 +14,7 @@ Route::post('/', [AuthController::class, 'login']);
 
 Route::get('/inicio', [InicioController::class, 'inicio'])->name('inicio')->middleware('role:1,2');
 
+
 Route::resource('anuncios', AnuncioController::class);
 
 

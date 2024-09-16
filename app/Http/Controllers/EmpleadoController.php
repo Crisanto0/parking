@@ -153,7 +153,11 @@ public function changePassword(Request $request, $usuario_id)
             'regex:/[@$!%*?&]/'    // Al menos un carácter especial
         ],
     ], [
-        'new_contrasena.regex' => 'La nueva contraseña debe contener al menos una letra minúscula, una mayúscula, un número y un carácter especial.',
+        'contrasena.regex' => 'La nueva contraseña debe contener al menos una letra minúscula, una mayúscula, un número y un carácter especial.',
+        'current_contrasena.required'=> 'El campo contraseña actual es obligatoria',
+        'contrasena.required' => 'El campo nueva contraseña es obligatorio',
+        'contrasena.confirmed' => 'Las contraseñas no coinciden'
+
     ]);
 
     // Verificar si la contraseña actual es correcta
@@ -208,6 +212,12 @@ public function showChangePasswordForm1($usuario_id)
                 'regex:/[0-9]/',       // Al menos un número
                 'regex:/[@$!%*?&]/'    // Al menos un carácter especial
             ],
+        ], [
+            'contrasena.regex' => 'La nueva contraseña debe contener al menos una letra minúscula, una mayúscula, un número y un carácter especial.',
+            'contrasena.required' => 'El campo nueva contraseña es obligatorio',
+            'contrasena.confirmed' => 'Las contraseñas no coinciden'
+    
+
         ]);
     
         // Cambiar la contraseña
