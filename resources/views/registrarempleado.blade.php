@@ -48,7 +48,7 @@
     <div class="col-md-6">
         <div class="form-group mb-3">
             <label for="email" class="form-label"><strong style="color:red;">*</strong> Correo Electrónico:</label>
-            <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}" >
+            <input type="text" id="correo" name="correo" class="form-control" value="{{ old('correo') }}" >
         </div>
     </div>
     <div class="col-md-6">
@@ -137,10 +137,26 @@
     <div class="col-md-6">
         <div class="form-group mb-3">
             <label for="contrasena" class="form-label"><strong style="color:red;">*</strong> Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" class="form-control" value="{{ old('contrasena') }}">
+            <div class="input-group">
+                <input type="password" id="contrasena" name="contrasena" class="form-control" value="{{ old('contrasena') }}">
+                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                    <i class="bi bi-eye"></i>
+                </button>
+            </div>    
         </div>
     </div>
-
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const passwordInput = document.querySelector('#contrasena');
+    
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+    
+            // Cambiar el icono del botón
+            this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+        });
+    </script>
     <!-- Botones -->
     <div class="col-12 text-center">
         <input type="submit" value="Enviar" class="btn btn-primary">

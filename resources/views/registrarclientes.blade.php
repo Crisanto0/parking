@@ -3,7 +3,7 @@
 @section('registarclientes', 'Página de registro')
 
 @section('content')
-<h2 class="text-center my-4">Registro de Clientes</h2>
+<h2 class="titulo text-center text-success my-5">Registro de Clientes</h2>
 
 <form id="clientForm" action="{{ route('registrarclientes') }}" method="POST" class="row g-3">
     @csrf
@@ -47,7 +47,7 @@
     <div class="col-md-6">
         <div class="form-group mb-3">
             <label for="email" class="form-label"><strong style="color:red;">*</strong> Correo Electrónico:</label>
-            <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}" >
+            <input type="text" id="correo" name="correo" class="form-control" value="{{ old('correo') }}" >
         </div>
     </div>
     <div class="col-md-6">

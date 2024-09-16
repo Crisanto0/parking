@@ -115,8 +115,11 @@
     <div class="col-md-6">
         <div class="form-group mb-3">
             <label for="contrasena" class="form-label">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" class="form-control">
-            <!-- Deja el campo de contraseña vacío para no sobrescribirla sin querer -->
+            <div class="input-group">
+                <input type="password" id="contrasena" name="contrasena" class="form-control" value="{{old('contrasena', $empleado->contrasena)}}">
+                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                    <i class="bi bi-eye"></i>
+           </div> <!-- Deja el campo de contraseña vacío para no sobrescribirla sin querer -->
         </div>
     </div>
 
@@ -126,4 +129,16 @@
         <a href="{{ route('empleados.index') }}" class="btn btn-secondary">Cancelar</a>
     </div>
 </form>
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const passwordInput = document.querySelector('#contrasena');
+
+    togglePassword.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        // Cambiar el icono del botón
+        this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+    });
+</script>
 @endsection
