@@ -14,7 +14,7 @@
     }
 </style>
 
-    <h1>Factura</h1>
+    <h1 class="text-success">Factura</h1>
 
     <div class="invoice-container" style="border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
         <p><strong>Número de Factura:</strong> {{ $factura->no_factura }}</p>

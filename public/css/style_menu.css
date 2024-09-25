@@ -223,16 +223,16 @@ nav {
     height: 0;
 }
 .rol {
-    padding: 20px 30px;
+    padding: 15px 25px; /* Reducir el padding */
     display: flex;
+    align-items: center; /* Alinea verticalmente */
     font-size: 18px;
-    margin-top: 10px;
+}
+.rol i {
+    font-size: 18px; /* Tamaño uniforme del ícono */
+    margin-right: 10px; /* Reducir el espacio entre ícono y texto */
 }
 
-.rol i {
-    width: 20px;
-    margin-right: 20px;
-}
 
 header {
     background-color: #4ea556;

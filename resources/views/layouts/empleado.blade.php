@@ -55,6 +55,7 @@
         }
 
         .menu {
+            
             width: 250px;
             
             position: fixed;
@@ -76,17 +77,32 @@
             padding-left: 0;
         }
 
-        .rol {
+        /* Asegura que todos los íconos tengan el mismo tamaño */
+        .menu i {
+            font-size: 18px; /* Ajusta este tamaño según tu diseño */
+            width: 18px;
+            height: 18px;
             display: flex;
             align-items: center;
-            padding: 10px;
-            
-            color:black;
+            justify-content: center;
+            margin-right: 10px; /* Reducir el espacio entre ícono y texto */
+        }
+
+
+        .rol {
+            padding: 15px 25px; /* Reducir el padding */
+            display: flex;
+            align-items: center; /* Alinea verticalmente */
+            font-size: 18px;
+        }
+        .rol i {
+            font-size: 18px; /* Tamaño uniforme del ícono */
+            margin-right: 10px; /* Reducir el espacio entre ícono y texto */
         }
 
         .rol h4 {
             margin: 0;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             margin-left: 10px;
         }
@@ -104,9 +120,6 @@
     width: 10px;
     height: auto;
 }
-
-
-    
      
     </style>
 </head>

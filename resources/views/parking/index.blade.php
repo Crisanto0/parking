@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Zonas de Parqueo</h1>
+    <h1 class="text-success">Zonas de Parqueo</h1>
 
     <form method="GET" action="{{ route('parking.index') }}">
         <div class="form-group">

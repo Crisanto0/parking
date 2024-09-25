@@ -3,7 +3,7 @@
 @section('inicio', 'Editar Empleado')
 
 @section('content')
-<h2 class="text-center my-4">Editar Empleado</h2>
+<h2 class="text-center text-success my-4">Editar Empleado</h2>
 
 <form action="{{ route('empleados.update', $empleado->usuario_id) }}" method="POST" class="row g-3">
     @csrf
@@ -112,16 +112,7 @@
             <input type="text" id="usuario" name="usuario" class="form-control" value="{{ old('usuario', $empleado->usuario) }}" required>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group mb-3">
-            <label for="contrasena" class="form-label">Contraseña:</label>
-            <div class="input-group">
-                <input type="password" id="contrasena" name="contrasena" class="form-control" value="{{old('contrasena', $empleado->contrasena)}}">
-                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
-                    <i class="bi bi-eye"></i>
-           </div> <!-- Deja el campo de contraseña vacío para no sobrescribirla sin querer -->
-        </div>
-    </div>
+    
 
     <!-- Botones -->
     <div class="col-12 text-center">

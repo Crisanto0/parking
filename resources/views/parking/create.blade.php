@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Registrar Nueva Zona de Parqueo</h1>
+        <h1 class="text-success">Registrar Nueva Zona de Parqueo</h1>
 
         <!-- Mostrar mensajes de éxito o error -->
         @if(session('success'))
@@ -22,7 +22,7 @@
             
 
             <div class="form-group">
-                <label for="descripcion">Descripción</label>
+                <label for="descripcion">Nombre de la zona</label>
                 <input type="text" id="descripcion" name="descripcion" class="form-control" value="{{ old('descripcion') }}" required>
                 @error('descripcion')
                     <div class="alert alert-danger">{{ $message }}</div>

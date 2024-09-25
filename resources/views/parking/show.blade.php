@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="text-center">Detalles de la Zona de Parqueo</h1>
+<h1 class="text-center text-success">Detalles de la Zona de Parqueo</h1>
 
 
     <div class="zona-card" style="border: 1px solid #ddd; padding: 20px; width: 100%; max-width: 800px; border-radius: 10px; margin: 0 auto;">

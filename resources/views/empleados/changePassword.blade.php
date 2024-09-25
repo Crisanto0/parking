@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Cambiar Contraseña</h1>
+    <h2 class="text-success mt-5">Cambiar Contraseña</h2>
 
     @if ($errors->any())
         <div class="alert alert-danger">

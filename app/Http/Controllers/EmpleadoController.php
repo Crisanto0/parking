@@ -15,7 +15,7 @@ class EmpleadoController extends Controller
             'telefono' => 'required|digits:10|numeric',
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'correo' => 'required|email|max:255',
             'direccion' => 'nullable|string|max:255',
             'tipo_identificacion' => 'required|string|max:255',
             'numero_identificacion' => 'required|string|max:255',

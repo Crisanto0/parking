@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="my-4 text-center">Detalles del Propietario</h2>
+    <h2 class="my-4 text-center text-success">Detalles del Propietario</h2>
 
     <div class="card">
         <div class="card-header">
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <h3 class="mt-4">Vehículo(s) del Propietario</h3>
+    <h5 class="mt-4">Vehículo(s) del Propietario</h5>
 
     @foreach($propietario->vehiculos as $vehiculo)
         <div class="card mt-2">

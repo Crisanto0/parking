@@ -21,7 +21,7 @@
         .tituloinicial {
             color: #2fd33d;
             text-align: center;
-            font-family: 'Times New Roman', Times, serif;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         form {

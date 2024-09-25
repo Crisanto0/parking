@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="my-4 text-center">Listado de Empleados</h2>
+    <h2 class="my-4 text-center text-success">Listado de Empleados</h2>
 
     <form method="GET" action="{{ route('buscar_empleados.index') }}" class="mb-4">
         <div class="input-group">

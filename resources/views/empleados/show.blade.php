@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="mb-4">Detalles del Empleado</h1>
+    <h2 class="mb-4 text-success">Detalles del Empleado</h2>
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Información Personal</h5>
@@ -29,10 +29,11 @@
             <p><strong>Fecha de Terminación:</strong> {{ $empleado->fecha_terminacion }}</p>
 
             
-            <a href="{{ route('empleados.changeStatus', $empleado->usuario_id) }}" class="btn btn-warning">
+            <a href="{{ route('empleados.changeStatus', $empleado->usuario_id) }}" class="btn btn-warning me-2">
                 {{ $empleado->status == 'activo' ? 'Bloquear' : 'Activar' }}
             </a>
-            <a href="{{ route('empleados.index') }}" class="btn btn-success mt-3">Aceptar</a>
+            <a href="{{ route('empleados.index') }}" class="btn btn-success">Aceptar</a>
+            
         </div>
     </div>
 </div>

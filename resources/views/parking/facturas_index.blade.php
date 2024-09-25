@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Listado de Facturas</h1>
+    <h1 class="text-success">Listado de Facturas</h1>
 
     <!-- Contenedor para alinear el botón a la derecha -->
     

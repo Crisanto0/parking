@@ -3,7 +3,7 @@
 @section('inicio', 'Página de Inicio')
 
 @section('content')
-<h2 class="text-center my-4">Registro de Empleado Nuevo</h2>
+<h2 class="text-center text-success my-4">Registro de Empleado Nuevo</h2>
 
 <!-- Mostrar mensajes de éxito -->
 @if (session('success'))
@@ -47,7 +47,7 @@
     </div>
     <div class="col-md-6">
         <div class="form-group mb-3">
-            <label for="email" class="form-label"><strong style="color:red;">*</strong> Correo Electrónico:</label>
+            <label for="correo" class="form-label"><strong style="color:red;">*</strong> Correo Electrónico:</label>
             <input type="text" id="correo" name="correo" class="form-control" value="{{ old('correo') }}" >
         </div>
     </div>

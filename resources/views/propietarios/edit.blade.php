@@ -3,7 +3,7 @@
 @section('editarclientes', 'Página de editar')
 
 @section('content')
-<h2 class="text-center my-4">Editar Clientes</h2>
+<h2 class="text-center text-success my-4">Editar Clientes</h2>
 @if (session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ session('success') }}

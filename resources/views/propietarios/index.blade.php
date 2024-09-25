@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="my-4 text-center">Listado de Propietarios</h2>
+    <h2 class="my-4 text-center text-success">Listado de Propietarios</h2>
     <form method="GET" action="{{ route('propietarios.index') }}" class="mb-4">
         <div class="input-group">
             <input type="text" name="search" class="form-control" placeholder="Buscar por Nombre o Número de Identificación" value="{{ request('search') }}">

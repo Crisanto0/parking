@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Editar Perfil</h1>
+    <h2 class=" titulo  text-success">Editar Perfil</h2>
 
     <form action="{{ route('empleados.updateProfile', ['usuario_id' => $empleado->usuario_id])}}" method="POST">
         @csrf

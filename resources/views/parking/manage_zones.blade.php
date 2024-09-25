@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Gestionar Zonas de Parqueo</h1>
+    <h1 class="text-success">Gestionar Zonas de Parqueo</h1>
 
     @if(session('success'))
         <div class="alert alert-success">

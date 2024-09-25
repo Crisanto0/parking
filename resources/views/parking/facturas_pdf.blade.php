@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <h1>Reporte de Facturas</h1>
+    <h1 class="text-success">Reporte de Facturas</h1>
     <p>Fecha de reporte: {{ \Carbon\Carbon::now()->format('d-m-Y') }}</p>
 
     <table>

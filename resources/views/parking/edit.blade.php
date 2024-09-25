@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="container">
-    <h1>Editar Zona de Parqueo</h1>
+    <h1 class="text-success">Editar Zona de Parqueo</h1>
 
     <form action="{{ route('parking.update', $garaje->id_garaje) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="form-group">
-            <label for="descripcion">Descripción</label>
+            <label for="descripcion">Nombre de la zona</label>
             <input type="text" id="descripcion" name="descripcion" class="form-control" value="{{ old('descripcion', $garaje->descripcion) }}" required>
             @error('descripcion')
                 <div class="alert alert-danger mt-2">{{ $message }}</div>

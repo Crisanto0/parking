@@ -3,17 +3,17 @@
 @section('inicio', 'Página de Inicio')
 
 @section('content')
-<h1 class="titulo text-center text-success my-5">Bienvenido al Portal Parking Web</h1>
+<h2 class="titulo text-center text-success ">Bienvenido a Parking Web</h2>
 
 <div class="container">
-    <h2 class="text-primary">Anuncios</h2>
-    <p class="mb-5">Aquí puedes ver los anuncios más recientes:</p>
+    <h3 class="text-primary">Anuncios</h3>
+    
 
     @foreach ($anuncios as $anuncio)
         <div class="card mb-5 shadow-lg">
             <!-- Descripción del anuncio en la parte superior izquierda -->
             <div class="card-body">
-                <h3 class="card-title text-start text-success">{{ $anuncio->descripcion }}</h3>
+                <h5 class="card-title text-start ">{{ $anuncio->descripcion }}</h5>
             </div>
             
             <!-- Imagen del anuncio con object-fit: contain -->
