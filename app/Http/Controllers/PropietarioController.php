@@ -55,6 +55,7 @@ public function update(StoreRequest $request, $propietario_id)
         'apellido' => 'required|string|max:255',
         'tipo_identificacion' => 'required|string|max:255',
         'numero_identificacion' => 'required|string|max:255',
+        'email'=> 'required|email|max255',
         'placa' => 'required|string|max:255',
         'marca' => 'required|string|max:255',
         'modelo' => 'required|string|max:255',

@@ -18,7 +18,7 @@ class EmpleadoController extends Controller
             'correo' => 'required|email|max:255',
             'direccion' => 'nullable|string|max:255',
             'tipo_identificacion' => 'required|string|max:255',
-            'numero_identificacion' => 'required|string|max:255',
+            'numero_identificacion' => 'required|numeric',
             'salario' => 'required|numeric|min:0',
             'tipo_contrato' => 'required|in:Indefinido,Temporal,Por obra',
             'rol_id' => 'required|in:1,2',
@@ -33,7 +33,7 @@ class EmpleadoController extends Controller
                 'regex:/[a-z]/',       // Al menos una letra minúscula
                 'regex:/[A-Z]/',       // Al menos una letra mayúscula
                 'regex:/[0-9]/',       // Al menos un número
-                'regex:/[@$!%*?&]/'    // Al menos un carácter especial
+                'regex:/[@$!%*?&#]/'    // Al menos un carácter especial
             ],
         ], [
             'telefono.digits' => 'El teléfono debe tener exactamente 10 dígitos.',
@@ -43,6 +43,7 @@ class EmpleadoController extends Controller
             'contrasena.regex' => 'La contraseña debe tener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial.',
             'contrasena.min' => 'La contraseña debe tener al menos 8 caracteres.',
             'usuario.numeric' => 'El campo usuario solo puede conterener el numero de identificación.',
+            'numero_identificacion.numeric' => 'El campo numero de identificación solo puede conter numeros.',
         ]);
     
         // Crear el empleado si la validación es exitosa
@@ -73,6 +74,7 @@ class EmpleadoController extends Controller
     // Método para mostrar el formulario de edición
     public function edit($usuario_id)
     {
+        
         $empleado = Usuario::findOrFail($usuario_id);
         return view('empleados.edit', compact('empleado'));
     }
@@ -80,6 +82,30 @@ class EmpleadoController extends Controller
     // Método para actualizar la información del empleado
     public function update(Request $request, $usuario_id)
     {
+        $request->validate([
+            'telefono' => 'required|digits:10|numeric',
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'correo' => 'required|email|max:255',
+            'direccion' => 'nullable|string|max:255',
+            'tipo_identificacion' => 'required|string|max:255',
+         
+            'salario' => 'required|numeric|min:0',
+            'tipo_contrato' => 'required|in:Indefinido,Temporal,Por obra',
+            'rol_id' => 'required|in:1,2',
+            'horario' => 'required|string|max:255',
+            'fecha_contrato' => 'required|date',
+            'fecha_terminacion' => 'required|date|after_or_equal:fecha_contrato',
+            'usuario' => 'required|numeric',
+           
+        ], [
+            'telefono.digits' => 'El teléfono debe tener exactamente 10 dígitos.',
+            'telefono.numeric' => 'El teléfono solo puede contener números.',
+            'telefono.digits' => 'El teléfono debe tener exactamente 10 dígitos.',
+            'email.email' => 'El campo :attribute debe ser un correo electrónico válido.',
+            'usuario.numeric' => 'El campo usuario solo puede conterener el numero de identificación.',
+            'numero_identificacion.numeric' => 'El campo numero de identificación solo puede conter numeros.',
+        ]);
         $empleado = Usuario::findOrFail($usuario_id);
         $empleado->update($request->all());
         return redirect()->route('empleados.index')->with('success', 'Empleado actualizado correctamente');

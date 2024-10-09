@@ -31,7 +31,7 @@
 
             <div class="form-group">
                 <label for="estados_estado_id">Estado</label>
-                <select id="estados_estado_id" name="estados_estado_id" class="form-control" required>
+                <select id="estados_estado_id" name="estados_estado_id" class="form-control" required style="margin-bottom: 4px;">
                     <option value="1" >Disponible</option>
                     <option value="2" >Ocupado</option>
                 </select>
@@ -39,9 +39,11 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-
+        
             <button type="submit" class="btn btn-primary">Registrar Zona</button>
-            <a href="{{ route('parking.index') }}" class="btn btn-secondary">Cancelar</a>
+            <a href="{{ route('parking.index') }}" class="btn btn-danger">Cancelar</a>
+
         </form>
+        
     </div>
 @endsection

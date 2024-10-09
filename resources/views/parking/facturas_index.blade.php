@@ -58,7 +58,7 @@
                     <td>{{ $factura->tiempo_prestado }} minutos</td>
                     <td>{{ $factura->usuario->nombre }} {{ $factura->usuario->apellido }}</td>
                     <td>
-                        <a href="{{ route('parking.invoice', $factura->no_factura) }}" class="btn btn-info">Ver</a>
+                        <a href="{{ route('parking.print', $factura->no_factura) }}" class="btn btn-info" target="_blank">Ver</a>
                         <a href="{{ route('parking.pdf', $factura->no_factura) }}" class="btn btn-primary">Descargar PDF</a>
                     </td>
                 </tr>

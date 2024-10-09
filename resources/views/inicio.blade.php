@@ -19,12 +19,15 @@
             <!-- Imagen del anuncio con object-fit: contain -->
             @if ($anuncio->imagen)
                 <img src="{{ asset('storage/' . $anuncio->imagen) }}" alt="{{ $anuncio->descripcion }}" class="card-img-bottom" style="max-height: 400px; object-fit: contain; width: 100%;">
-            @else
-                <img src="https://via.placeholder.com/1200x400?text=No+Image" alt="Sin imagen" class="card-img-bottom" style="max-height: 400px; object-fit: contain; width: 100%;">
+        
             @endif
+
+            <br><br>
         </div>
     @endforeach
+    
 </div>
+
 @endsection
 
 

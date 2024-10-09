@@ -27,7 +27,7 @@
         </div>
         
         <button type="submit" class="btn btn-primary">Actualizar</button>
-        <a href="{{ route('parking.manage_zones') }}" class="btn btn-secondary">Cancelar</a>
+        <a href="{{ route('parking.manage_zones') }}" class="btn btn-danger">Cancelar</a>
     </form>
 </div>
 @endsection

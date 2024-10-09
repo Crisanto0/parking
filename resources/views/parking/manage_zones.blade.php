@@ -58,7 +58,7 @@
                         <form action="{{ route('parking.delete', $garaje->id_garaje) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirmSubmission()">Eliminar</button>
                         </form>
 
                         <!-- Botón de editar -->
@@ -73,6 +73,11 @@
     <div class="pagination">
         {{ $garajes->appends(['search' => $search])->links('pagination::bootstrap-4') }}
     </div>
+    <script>
+        function confirmSubmission() {
+            return confirm('¿Está seguro de que desea Eliminar la zona?');
+        }
+        </script>
 </div>
 @endsection
 

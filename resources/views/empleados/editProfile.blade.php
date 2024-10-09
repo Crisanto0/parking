@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
     <h2 class=" titulo  text-success">Editar Perfil</h2>
 
     <form action="{{ route('empleados.updateProfile', ['usuario_id' => $empleado->usuario_id])}}" method="POST">
@@ -17,7 +27,7 @@
 
         <div class="form-group">
             <label for="correo">Email:</label>
-            <input type="email" name="correo" class="form-control" value="{{ $empleado->correo }}" required>
+            <input type="text" name="correo" class="form-control" value="{{ $empleado->correo }}" >
         </div>
 
         <div class="form-group">
@@ -30,6 +40,6 @@
         </div>
         
         <button type="submit" class="btn btn-success">Guardar Cambios</button>
-        <a href="{{ route('empleados.profile', ['usuario_id' => $empleado->usuario_id])  }}" class="btn btn-secondary">Cancelar</a>
+        <a href="{{ route('empleados.profile', ['usuario_id' => $empleado->usuario_id])  }}" class="btn btn-Danger">Cancelar</a>
     </form>
 @endsection

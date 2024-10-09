@@ -28,9 +28,12 @@
                 </div>
                 <div class="form-group">
                     <label for="palabra_seguridad">Palabra de Seguridad:</label>
-                    <input type="password" class="form-control" name="palabra_seguridad" required>
+                    <input type="password" class="form-control" name="palabra_seguridad" required><br>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Verificar</button>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-block">Verificar</button>
+                    <a href="{{ route('login') }}" class="btn btn-danger">Cancelar</a>
+                </div>
             </form>
         </div>
     </div>

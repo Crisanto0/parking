@@ -3,6 +3,15 @@
 @section('inicio', 'Editar Empleado')
 
 @section('content')
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <h2 class="text-center text-success my-4">Editar Empleado</h2>
 
 <form action="{{ route('empleados.update', $empleado->usuario_id) }}" method="POST" class="row g-3">
@@ -116,11 +125,16 @@
 
     <!-- Botones -->
     <div class="col-12 text-center">
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-        <a href="{{ route('empleados.index') }}" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-primary" onclick="return confirmSubmission()">Actualizar</button>
+        <a href="{{ route('empleados.index') }}" class="btn btn-danger">Cancelar</a>
     </div>
 </form>
 <script>
+ 
+function confirmSubmission() {
+    return confirm('¿Está seguro de que desea enviar el formulario?');
+}
+
     const togglePassword = document.querySelector('#togglePassword');
     const passwordInput = document.querySelector('#contrasena');
 

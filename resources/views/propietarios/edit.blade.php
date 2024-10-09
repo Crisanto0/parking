@@ -117,9 +117,15 @@
 
     <!-- Botones -->
         <div class="col-12 text-center">
-            <input type="submit" value="Enviar" class="btn btn-primary">
+            <input type="submit" value="Actualizar" class="btn btn-primary" onclick="return confirmSubmission()">
+            <a href="{{ route('propietarios.index') }}" class="btn btn-danger">Cancelar</a>
         </div>
 </form>
+<script>
+    function confirmSubmission() {
+        return confirm('¿Está seguro de que desea enviar el formulario?');
+    }
+</script>
 </div>
 </div>
 @endsection

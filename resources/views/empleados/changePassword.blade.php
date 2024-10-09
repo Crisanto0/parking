@@ -49,10 +49,17 @@
         </div>
 
         <!-- Botón de envío -->
-        <button type="submit" class="btn btn-success">Cambiar Contraseña</button>
+        <button type="submit" class="btn btn-success" onclick="return confirmSubmission()">Cambiar Contraseña</button>
+        <a href="{{ route('empleados.profile', ['usuario_id' => auth()->user()->usuario_id]) }}" class="btn btn-danger">Cancelar</a>
     </form>
 
     <script>
+
+
+        function confirmSubmission() {
+            return confirm('¿Está seguro de que desea enviar el formulario?');
+        }
+
         // Mostrar/ocultar contraseña actual
         const toggleCurrentPassword = document.querySelector('#toggleCurrentPassword');
         const currentPasswordInput = document.querySelector('#current_contrasena');

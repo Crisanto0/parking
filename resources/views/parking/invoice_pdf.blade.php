@@ -59,17 +59,17 @@
         <div class="invoice-details">
             <p><strong>Número de Factura:</strong> {{ $factura->no_factura }}</p>
             <p><strong>Fecha de Factura:</strong> {{ $factura->fecha_factura }}</p>
-            <p><strong>Código de Resolución:</strong> {{ $factura->codigo_resolucion }}</p>
+            <p><strong>Resolución:</strong> {{ $factura->codigo_resolucion }}</p>
             <p><strong>Valor Total:</strong> {{ $factura->valor }} ({{ $factura->tiempo_prestado }} minutos)</p>
             <p><strong>Valor por Fracción:</strong> {{ $factura->valor_fracion }}</p>
             <p><strong>Empleado:</strong> {{ $factura->usuario->nombre }} {{ $factura->usuario->apellido }}</p>
 
             @foreach($factura->parkings as $parking)
                 <hr>
-                <p><strong>Placa del Vehículo:</strong> {{ $parking->vehiculo->placa }}</p>
+                <p><strong>Plac:</strong> {{ $parking->vehiculo->placa }}</p>
                 <p><strong>Hora de Entrada:</strong> {{ $parking->fecha_hora_entrada }}</p>
                 <p><strong>Hora de Salida:</strong> {{ $parking->fecha_hora_salida }}</p>
-                <p><strong>Descripción del Garaje:</strong> {{ $parking->garaje->descripcion }}</p>
+                <p><strong>Garaje:</strong> {{ $parking->garaje->descripcion }}</p>
             @endforeach
 
             

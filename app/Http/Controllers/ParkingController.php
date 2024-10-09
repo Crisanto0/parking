@@ -190,15 +190,16 @@ public function printInvoice($no_factura)
 {
     // Cargar la factura junto con el usuario relacionado
     $factura = Factura::with(['usuario', 'parkings.vehiculo', 'parkings.garaje'])
-    ->where('no_factura', $no_factura)
-    ->firstOrFail();
+                      ->where('no_factura', $no_factura)
+                      ->firstOrFail();
 
-// Generar el PDF usando la vista 'parking.invoice_pdf'
-$pdf = PDF::loadView('parking.invoice_pdf', compact('factura'));
+    // Generar el PDF usando la vista 'parking.invoice_pdf'
+    $pdf = PDF::loadView('parking.invoice_pdf', compact('factura'));
 
-// Descargar el archivo PDF
-return $pdf->stream('factura_' . $factura->no_factura . '.pdf');
+    // Mostrar el archivo PDF en el navegador
+    return $pdf->stream('factura_' . $factura->no_factura . '.pdf');
 }
+
 
 public function facturasIndex(Request $request)
 {

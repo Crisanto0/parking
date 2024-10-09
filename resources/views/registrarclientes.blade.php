@@ -47,7 +47,7 @@
     <div class="col-md-6">
         <div class="form-group mb-3">
             <label for="email" class="form-label"><strong style="color:red;">*</strong> Correo Electrónico:</label>
-            <input type="text" id="correo" name="correo" class="form-control" value="{{ old('correo') }}" >
+            <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}" >
         </div>
     </div>
     <div class="col-md-6">
@@ -124,8 +124,9 @@
     <!-- Botones -->
     <div class="col-12 text-center">
         <button type="submit" class="btn btn-primary" onclick="return confirmSubmission()">Enviar</button>
+        <a href="{{ route('propietarios.index') }}" class="btn btn-danger">Cancelar</a>
     </div>
-</form>
+</form><br>
 
 <script>
 function confirmSubmission() {

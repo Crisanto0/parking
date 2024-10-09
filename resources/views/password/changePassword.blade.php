@@ -42,6 +42,7 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Cambiar Contraseña</button>
+                <a href="{{ route('login') }}" class="btn btn-danger">Cancelar</a>
             </form>
 
             <script>
